@@ -59,6 +59,8 @@ public class GameOld implements IGame {
          if (roll % 2 != 0) {
             isGettingOutOfPenaltyBox = true;
 
+            // Corrige le bug qui empêche le joueur de sortir de prison
+            inPenaltyBox[currentPlayer] = false;
             System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
             places[currentPlayer] = places[currentPlayer] + roll;
             if (places[currentPlayer] > 12) places[currentPlayer] = places[currentPlayer] - 12;
@@ -115,7 +117,7 @@ public class GameOld implements IGame {
    public boolean handleCorrectAnswer() {
       if (inPenaltyBox[currentPlayer]) {
          if (isGettingOutOfPenaltyBox) {
-            System.out.println("Answer was corrent!!!!");
+            System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer)
                                + " now has "
@@ -135,7 +137,7 @@ public class GameOld implements IGame {
 
       } else {
 
-         System.out.println("Answer was corrent!!!!");
+         System.out.println("Answer was correct!!!!");
          purses[currentPlayer]++;
          System.out.println(players.get(currentPlayer)
                             + " now has "
