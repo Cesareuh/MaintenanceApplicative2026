@@ -2,21 +2,23 @@ package com.maintenanceapp;
 
 import java.time.LocalDateTime;
 
+import com.maintenanceapp.Event.*;
+import com.maintenanceapp.Event.Props.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalendarManagerTest {
     public CalendarManager cal;
 
     @BeforeEach
-    void init(){
+    void init() {
         cal = new CalendarManager();
     }
 
     @Test
-    void addRdvPerso(){
+    void addRdvPerso() {
         cal.ajouterEvent(new RdvPerso(
                 new Title("test"),
                 new Proprietaire("Jean"),
@@ -26,8 +28,9 @@ class CalendarManagerTest {
 
         assertEquals(1, cal.events.size());
     }
+
     @Test
-    void addReunion(){
+    void addReunion() {
         Participants participants = new Participants();
         participants.ajouter(new Participant("Alice"));
         participants.ajouter(new Participant("Bob"));
@@ -43,8 +46,9 @@ class CalendarManagerTest {
 
         assertEquals(1, cal.events.size());
     }
+
     @Test
-    void addPeriodique(){
+    void addPeriodique() {
         cal.ajouterEvent(new Periodique(
                 new Title("test"),
                 new Proprietaire("Jean"),
@@ -56,7 +60,7 @@ class CalendarManagerTest {
         assertEquals(1, cal.events.size());
     }
 
-    private void setupEvents(){
+    private void setupEvents() {
         cal.ajouterEvent(new Periodique(
                 new Title("period"),
                 new Proprietaire("Jean"),
@@ -89,34 +93,39 @@ class CalendarManagerTest {
     }
 
     @Test
-    void getPeriodEvent(){
+    void getPeriodEvent() {
         setupEvents();
 
-        Events events = cal.eventsDansPeriode(
+        Periode periode = new Periode(
                 LocalDateTime.of(2026, 4, 1, 0, 0),
                 LocalDateTime.of(2026, 5, 20, 0, 0)
         );
 
+        Events events = cal.eventsDansPeriode(periode);
+
         assertEquals(5, events.size());
-
-
     }
 
     @Test
-    void getEvents(){
-        Events events = cal.eventsDansPeriode(
+    void getEvents() {
+        setupEvents();
+
+        Periode periode = new Periode(
                 LocalDateTime.of(2026, 5, 1, 0, 0),
                 LocalDateTime.of(2026, 5, 10, 0, 0)
         );
+        Events events = cal.eventsDansPeriode(periode);
         assertEquals(2, events.size());
     }
 
     @Test
     void getEvents2() {
-        Events events = cal.eventsDansPeriode(
+        setupEvents();
+        Periode periode = new Periode(
                 LocalDateTime.of(2026, 5, 15, 0, 0),
                 LocalDateTime.of(2026, 5, 18, 0, 0)
         );
+        Events events = cal.eventsDansPeriode(periode);
         assertEquals(3, events.size());
     }
 }

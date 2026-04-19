@@ -1,4 +1,6 @@
 package com.maintenanceapp;
+import com.maintenanceapp.Event.Event;
+
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import java.util.List;
@@ -6,6 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
+    /*
     public static void main(String[] args) {
         CalendarManager calendar = new CalendarManager();
         Scanner scanner = new Scanner(System.in);
@@ -262,4 +265,5 @@ public class Main {
             }
         }
     }
+    */
 }

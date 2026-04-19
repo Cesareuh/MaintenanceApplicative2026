@@ -1,21 +1,33 @@
 package com.maintenanceapp;
+import com.maintenanceapp.Event.Event;
+import com.maintenanceapp.Event.Events;
+import com.maintenanceapp.Event.Props.Periode;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarManager {
-    public List<Event> events;
+    // public List<Event> events;
+    public Events events;
 
     public CalendarManager() {
-        this.events = new ArrayList<>();
+        events = new Events();
     }
 
+    /*
     public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
                              String lieu, String participants, int frequenceJours) {
         Event e = new Event(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
         events.add(e);
     }
+    */
 
+    public void ajouterEvent(Event e){
+        events.ajouter(e);
+    }
+
+    /*
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
         List<Event> result = new ArrayList<>();
         for (Event e : events) {
@@ -34,7 +46,12 @@ public class CalendarManager {
         }
         return result;
     }
+    */
+    public Events eventsDansPeriode(Periode periode) {
+        return events.dansPeriode(periode);
+    }
 
+    /*
     public boolean conflit(Event e1, Event e2) {
         LocalDateTime fin1 = e1.dateDebut.plusMinutes(e1.dureeMinutes);
         LocalDateTime fin2 = e2.dateDebut.plusMinutes(e2.dureeMinutes);
@@ -54,4 +71,5 @@ public class CalendarManager {
             System.out.println(e.description());
         }
     }
+    */
 }
