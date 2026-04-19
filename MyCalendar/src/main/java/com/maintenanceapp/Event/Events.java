@@ -30,6 +30,27 @@ public class Events {
         return result;
     }
 
+    public Events conflits() {
+
+        Events result = new Events();
+        List<Event> list = this.events;
+
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+
+                Event e1 = list.get(i);
+                Event e2 = list.get(j);
+
+                if (e1.conflitAvec(e2)) {
+                    result.ajouter(e1);
+                    result.ajouter(e2);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public int size(){
         return events.size();
     }

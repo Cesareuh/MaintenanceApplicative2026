@@ -1,6 +1,7 @@
 package com.maintenanceapp;
 import com.maintenanceapp.Event.Event;
 import com.maintenanceapp.Event.Events;
+import com.maintenanceapp.Event.Props.EventId;
 import com.maintenanceapp.Event.Props.Periode;
 
 import java.time.LocalDateTime;
@@ -51,6 +52,19 @@ public class CalendarManager {
         return events.dansPeriode(periode);
     }
 
+    public Events tousLesEvenements() {
+        Events result = new Events();
+        result.ajouterTous(this.events);
+        return result;
+    }
+
+    public void supprimer(EventId id) {
+        events.value().removeIf(e -> e.id.equals(id));
+    }
+
+    public Events detecterConflits(Periode periode) {
+        return events.dansPeriode(periode).conflits();
+    }
     /*
     public boolean conflit(Event e1, Event e2) {
         LocalDateTime fin1 = e1.dateDebut.plusMinutes(e1.dureeMinutes);

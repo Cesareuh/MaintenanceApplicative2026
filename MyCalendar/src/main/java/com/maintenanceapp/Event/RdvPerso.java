@@ -2,6 +2,8 @@ package com.maintenanceapp.Event;
 
 import com.maintenanceapp.Event.Props.*;
 
+import java.time.LocalDateTime;
+
 public class RdvPerso extends Event {
 
     public RdvPerso(Title title,

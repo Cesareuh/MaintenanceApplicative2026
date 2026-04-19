@@ -2,6 +2,8 @@ package com.maintenanceapp.Event;
 
 import com.maintenanceapp.Event.Props.*;
 
+import java.time.LocalDateTime;
+
 public class Reunion extends Event {
 
     private final Lieu lieu;
@@ -36,6 +38,7 @@ public class Reunion extends Event {
         }
         return result;
     }
+
 
     /*
     @Override
